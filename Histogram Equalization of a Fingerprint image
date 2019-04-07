@@ -1,0 +1,33 @@
+a=imread('fingerprint256by256.pgm');
+imshow(a);
+ y=zeros(1,256);
+for i=1:256
+ for j=1:256
+  z=a(i,j);
+  y(z+1)=y(z+1)+1;
+ end;
+end;
+plot2d3(y);
+   for i=1:256
+     b(i)=length(find(a==(i-1)));
+   end;
+c=b/(256*256);
+pb(1)=c(1);
+for i=2:256
+  pb(i)=pb(i-1)+c(i);
+end;
+s=pb*255;
+sb=uint8(round(s));
+index=0;
+for i=1:256;
+ for j=1:256
+  index=double(a(i,j))+1;
+  h(i,j)=sb(index);
+ end;
+end;
+plot2d3(b);
+for j=1:256
+ t(j)=length(find(h==(j-1)));
+end;
+plot2d3(t);
+imshow(h);
