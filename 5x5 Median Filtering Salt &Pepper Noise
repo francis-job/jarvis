@@ -1,0 +1,16 @@
+clc;
+a=imread('lena256by256.pgm');
+subplot(2,2,1);
+imshow(a);
+b=input('enter the noise scale :  ');
+c=imnoise(a,'salt & pepper',b);
+subplot(2,2,2);
+imshow(c);
+[m,n]=size(c);
+for i=2:m-2
+    for j=2:n-2
+        d(i,j)=median([a(i-2,j-2),a(i-2,j-1),a(i-2,j),a(i-2,j+1),a(i-2,j+2);a(i-1,j-2),a(i-1,j-1),a(i-1,j),a(i-1,j+1),a(i-1,j+2);a(i,j-2),a(i,j-1),a(i,j),a(i,j+1),a(i,j+2);a(i+1,j-2),a(i+1,j-1),a(i+1,j),a(i+1,j+1),a(i+1,j+2);a(i+2,j-2),a(i+2,j-1),a(i+2,j),a(i+2,j+1),a(i+2,j+2)]);
+    end
+end
+subplot(2,2,3);
+imshow(d);
